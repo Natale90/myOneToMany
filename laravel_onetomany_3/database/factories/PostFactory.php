@@ -9,6 +9,6 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
 
         'title' => $faker -> word,
-        'text' => $faker -> sentences,
+        'text' => $faker -> sentence,
     ];
 });

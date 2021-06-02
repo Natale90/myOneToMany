@@ -19,6 +19,14 @@ class AddForeignKeys extends Migration
                    -> references('id')
                    -> on('tags');
         });
+
+        Schema::table('details', function (Blueprint $table) {
+
+            $table -> primary('post_id');
+            $table -> foreign('post_id', 'detailpost')
+                   -> references('id')
+                   -> on('posts');
+        });
     }
 
     /**
@@ -28,9 +36,14 @@ class AddForeignKeys extends Migration
      */
     public function down()
     {
-        // Schema::table('posts', function (Blueprint $table) {
-        //
-        //     $table -> dropForeign('postTag');
-        // });
+        Schema::table('posts', function (Blueprint $table) {
+
+            $table -> dropForeign('postTag');
+        });
+
+        Schema::table('details', function (Blueprint $table) {
+
+            $table -> dropForeign('detailpost');
+        });
     }
 }
